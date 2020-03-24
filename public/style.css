@@ -377,6 +377,9 @@ form input{
     padding: 0 10px;
     font-size: 18px;
     outline: none;
+    width: 100%;
+    left: -10px;
+    position: relative;
     margin-left: 10px;
 }
 
