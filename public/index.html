@@ -9,7 +9,7 @@
     <div id="app">
         <div class="userConnect">
             <div class="texture"></div>
-            <div class="connect box">
+            <div class="connect box" v-if="!playing">
                 <div class="title center">
                     <h2>Jogar</h2>
                 </div>
@@ -23,7 +23,7 @@
                     </div>
                     <br>
                     <br>
-                    <form>
+                    <form @submit.prevent="playGame">
                         <div class="input">
                             <input v-model="myName" type="text" placeholder="Nick">
                         </div>
@@ -36,7 +36,9 @@
                 </div>
             </div>
 
-            <div class="w-100-box overlay" v-if="selecionandoAvatar">
+            <div v-else=""></div>
+
+            <div class="w-100-box overlay" v-if="selecionandoAvatar && !playing">
                 <div class="sair" @click="selecionandoAvatar = false"></div>
                 <div class="box avatarBox">
                     <div class="title center">

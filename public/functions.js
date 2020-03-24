@@ -4,7 +4,9 @@ const app = new Vue({
         selectAvatar: 0,
         avatares: [],
         selecionandoAvatar: false,
-        myName: ""
+        myName: "",
+        playing: false,
+        myGame: {}
     },
     created(){
         this.createdAvatar()
@@ -12,6 +14,13 @@ const app = new Vue({
         if(myAvatar){
             if(myAvatar <= 26 && myAvatar >= 0){
                 this.selectAvatar = myAvatar
+            }
+        }
+        const myGame = JSON.parse(localStorage.getItem("myGame"))
+        if(myGame){
+            this.myName = myGame.name
+            if(myGame.avatar <= 26 && myAvatar.myGame >= 0){
+                this.selectAvatar = myGame.avatar
             }
         }
     },
@@ -24,6 +33,15 @@ const app = new Vue({
         selectAvatarT(i){
             this.selectAvatar = i
             localStorage.setItem("selectAvatar", i)
+        },
+        playGame(){
+            if(this.myName !== '' && this.myName !== null){
+                this.playing = true
+                localStorage.setItem("myGame", JSON.stringify({
+                    "name": this.myName,
+                    "avatar": this.selectAvatar
+                }))
+            }
         }
     }
 })
