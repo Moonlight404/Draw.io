@@ -29,7 +29,24 @@ canvas.addEventListener('mouseup', function() {
     canvas.removeEventListener('mousemove', onPaint, false);
 }, false);
  
+var myDraw = []
+
+const localDraw = JSON.parse(localStorage.getItem("myDraw"))
+
+if(localDraw){
+    loadDesenho(localDraw)
+}
+
+function loadDesenho(draw){
+    for(let i = 0; i < draw.length; i++){
+        ctx.lineTo(draw[i].x, draw[i].y)
+        ctx.stroke();
+    }
+}
+
 var onPaint = function() {
     ctx.lineTo(mouse.x, mouse.y);
     ctx.stroke();
+    myDraw.push({"x": mouse.x, "y": mouse.y})
+    localStorage.setItem("myDraw", JSON.stringify(myDraw))
 };
